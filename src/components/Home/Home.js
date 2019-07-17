@@ -6,15 +6,19 @@ import drivesData from '../../helpers/data/drivesData';
 
 import './Home.scss';
 
+const defaultDrive = {
+  date: '',
+  origin: '',
+  destination: '',
+  startTime: '',
+  endTime: '',
+};
 
 class Home extends React.Component {
   state = {
     drives: [],
-    date: '',
-    origin: '',
-    destination: '',
-    start: '',
-    end: '',
+    newDrive: defaultDrive,
+
   }
 
   getDrives = () => {
@@ -28,31 +32,27 @@ class Home extends React.Component {
     this.getDrives();
   }
 
-  dateChange = (e) => {
-    this.setState({ date: e.target.value });
+  formFieldStringState = (name, e) => {
+    const tempDrive = { ...this.state.newDrive };
+    tempDrive[name] = e.target.value;
+    this.setState({ newDrive: tempDrive });
   }
 
-  originationChange = (e) => {
-    this.setState({ date: e.target.value });
-  }
+  dateChange = e => this.formFieldStringState('date', e);
 
-  destinationChange = (e) => {
-    this.setState({ destination: e.target.value });
-  }
+  originChange = e => this.formFieldStringState('origin', e);
 
-  startChange = (e) => {
-    this.setState({ start: e.target.value });
-  }
+  destinationChange = e => this.formFieldStringState('destination', e);
 
-  endChange = (e) => {
-    this.setState({ end: e.target.value });
-  }
+  startTimeChange = e => this.formFieldStringState('startTime', e);
 
+  endTimeChange = e => this.formFieldStringState('endTime', e);
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.addWalk(this.state);
-    this.setState({ date: '' });
+    const saveMe = { ...this.state.newDrive };
+    saveMe.uid = firebase.auth().currentUser.uid;
+    drivesData.postDrive(saveMe);
   }
 
   render() {
@@ -63,8 +63,8 @@ class Home extends React.Component {
         <textarea placeholder="Date" value={this.state.value} onChange={this.dateChange} /><br/>
         <textarea placeholder="Origin" value={this.state.value} onChange={this.originChange} />
         <textarea placeholder="Destination" value={this.state.value} onChange={this.destinationChange} /><br/>
-        <textarea placeholder="Start Time" value={this.state.value} onChange={this.startChange} />
-        <textarea placeholder="End Time" value={this.state.value} onChange={this.endChange} /><br/>
+        <textarea placeholder="Start Time" value={this.state.value} onChange={this.startTimeChange} />
+        <textarea placeholder="End Time" value={this.state.value} onChange={this.endTimeChange} /><br/>
         <input type="submit" value="Save" />
       </form>
       </div>

@@ -20,7 +20,10 @@ const getMyDrives = uid => new Promise((resolve, reject) => {
 
 const deleteDrive = driveId => axios.delete(`${baseUrl}/drives/${driveId}.json`);
 
+const postDrive = newDrive => axios.post(`${baseUrl}/drives.json`, newDrive);
+
 export default {
   getMyDrives,
   deleteDrive,
+  postDrive,
 };
