@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink as RRNavLink } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -7,6 +7,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
+  NavLink,
 } from 'reactstrap';
 
 import firebase from 'firebase/app';
@@ -36,7 +37,10 @@ class MyNavbar extends React.Component {
         return (
           <Nav className="ml-auto" navbar>
           <NavItem>
-            <NavLink to="/home" onClick={this.logMeOut}>Logout</NavLink>
+            <NavLink className="logout" onClick={this.logMeOut}>Logout</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={RRNavLink} to="/myDrives">My Drives</NavLink>
           </NavItem>
         </Nav>
         );
