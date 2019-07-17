@@ -23,18 +23,26 @@ class MyDrives extends React.Component {
     this.getDrives();
   }
 
+  deleteDrive = (driveId) => {
+    console.error('delete');
+    drivesData.deleteDrive(driveId)
+      .then(() => this.getDrives())
+      .catch(err => console.error(err, 'unable to delete'));
+  }
+
   render() {
     const makeDriveCards = this.state.drives.map(drive => (
       <DriveCard
       key={drive.id}
       drive={drive}
+      deleteDrive={this.deleteDrive}
       />
     ));
 
     return (
-      <div className="MyDrives col">
+      <div className="MyDrives container">
         <h1>My Drives</h1>
-        <div className="d-col">
+        <div className="d-flex row">
         { makeDriveCards }
         </div>
       </div>
