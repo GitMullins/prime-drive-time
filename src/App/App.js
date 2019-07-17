@@ -11,6 +11,7 @@ import Auth from '../components/Auth/Auth';
 import Home from '../components/Home/Home';
 import MyNavbar from '../components/MyNavbar/MyNavbar';
 import MyDrives from '../components/MyDrives/MyDrives';
+import EditDrive from '../components/EditDrive/EditDrive';
 
 import fbConnection from '../helpers/data/connection';
 
@@ -67,6 +68,7 @@ class App extends React.Component {
                 <PrivateRoute path='/home' component={Home} authed={authed} />
 
                 <PrivateRoute path='/myDrives' component={MyDrives} authed={authed} />
+                <PrivateRoute path='/edit/:id' component={EditDrive} authed={authed} />
                 <Redirect from="*" to="/auth" />
               </Switch>
             </div>
