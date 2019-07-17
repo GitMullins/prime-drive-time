@@ -10,6 +10,11 @@ import './Home.scss';
 class Home extends React.Component {
   state = {
     drives: [],
+    date: '',
+    origin: '',
+    destination: '',
+    start: '',
+    end: '',
   }
 
   getDrives = () => {
@@ -23,20 +28,45 @@ class Home extends React.Component {
     this.getDrives();
   }
 
-  render() {
-    // const makeDriveCards = this.state.drives.map(drive => (
-    //   <DriveCard
-    //   key={drive.id}
-    //   drive={drive}
-    //   />
-    // ));
+  dateChange = (e) => {
+    this.setState({ date: e.target.value });
+  }
 
+  originationChange = (e) => {
+    this.setState({ date: e.target.value });
+  }
+
+  destinationChange = (e) => {
+    this.setState({ destination: e.target.value });
+  }
+
+  startChange = (e) => {
+    this.setState({ start: e.target.value });
+  }
+
+  endChange = (e) => {
+    this.setState({ end: e.target.value });
+  }
+
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.props.addWalk(this.state);
+    this.setState({ date: '' });
+  }
+
+  render() {
     return (
       <div className="Home col">
         <h1>Home</h1>
-        {/* <div className="d-col">
-        { makeDriveCards }
-        </div> */}
+        <form onSubmit={this.onSubmit}>
+        <textarea placeholder="Date" value={this.state.value} onChange={this.dateChange} /><br/>
+        <textarea placeholder="Origin" value={this.state.value} onChange={this.originChange} />
+        <textarea placeholder="Destination" value={this.state.value} onChange={this.destinationChange} /><br/>
+        <textarea placeholder="Start Time" value={this.state.value} onChange={this.startChange} />
+        <textarea placeholder="End Time" value={this.state.value} onChange={this.endChange} /><br/>
+        <input type="submit" value="Save" />
+      </form>
       </div>
     );
   }
