@@ -18,7 +18,9 @@ const getMyDrives = uid => new Promise((resolve, reject) => {
     .catch(err => reject(err));
 });
 
+const deleteDrive = driveId => axios.delete(`${baseUrl}/drives/${driveId}.json`);
 
 export default {
   getMyDrives,
+  deleteDrive,
 };
