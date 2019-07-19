@@ -37,10 +37,13 @@ class MyNavbar extends React.Component {
         return (
           <Nav className="ml-auto" navbar>
           <NavItem>
-            <NavLink className="logout" onClick={this.logMeOut}>Logout</NavLink>
+            <NavLink tag={RRNavLink} to='/home'>Home</NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={RRNavLink} to="/myDrives">My Drives</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={RRNavLink} to="/auth" className="logout" onClick={this.logMeOut}>Logout</NavLink>
           </NavItem>
         </Nav>
         );

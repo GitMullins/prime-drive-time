@@ -4,31 +4,25 @@
       "date": "01/01/2001",
       "startTime": "1:00",
       "endTime": "1:11",
-      "origin": "Antioch",
-      "destination": "Franklin",
-      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12",
-      "routeId": "",
-      "tripId": ""
+      "origin": "Murfreesboro",
+      "destination": "Nashville",
+      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
     },
     "drive2": {
       "date": "02/02/2002",
       "startTime": "2:00",
       "endTime": "2:22",
-      "origin": "Franklin",
+      "origin": "Murfreesboro",
       "destination": "Nashville",
-      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12",
-      "routeId": "",
-      "tripId": ""
+      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
     },
     "drive3": {
       "date": "03/03/2003",
       "startTime": "3:00",
       "endTime": "3:33",
-      "origin": "Clarksville",
-      "destination": "Murfreesboro",
-      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12",
-      "routeId": "",
-      "tripId": ""
+      "origin": "Murfreesboro",
+      "destination": "Nashville",
+      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
     },
     "drive4": {
       "date": "04/04/2004",
@@ -36,9 +30,7 @@
       "endTime": "4:44",
       "origin": "Murfreesboro",
       "destination": "Nashville",
-      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12",
-      "routeId": "",
-      "tripId": ""
+      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
     },
     "drive5": {
       "date": "05/05/2005",
@@ -46,10 +38,7 @@
       "endTime": "5:55",
       "origin": "Murfreesboro",
       "destination": "Nashville",
-      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12",
-      "routeId": "",
-      "tripId": ""
+      "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
     }
   }
 }
-
