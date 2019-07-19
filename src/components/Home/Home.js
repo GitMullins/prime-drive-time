@@ -2,9 +2,9 @@ import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import drivesData from '../../helpers/data/drivesData';
-// import DriveCard from '../DriveCard/DriveCard';
 
 import './Home.scss';
+import Calculations from '../Calculations/Calculations';
 
 const defaultDrive = {
   date: '',
@@ -18,7 +18,6 @@ class Home extends React.Component {
   state = {
     drives: [],
     newDrive: defaultDrive,
-
   }
 
   getDrives = () => {
@@ -53,9 +52,11 @@ class Home extends React.Component {
     const saveMe = { ...this.state.newDrive };
     saveMe.uid = firebase.auth().currentUser.uid;
     drivesData.postDrive(saveMe);
+    this.getDrives();
   }
 
   render() {
+    const { drives } = this.state;
     return (
       <div className="Home col">
         <h1>Home</h1>
@@ -67,6 +68,7 @@ class Home extends React.Component {
         <textarea placeholder="End Time" value={this.state.value} onChange={this.endTimeChange} /><br/>
         <input type="submit" value="Save" />
       </form>
+      <Calculations drives={drives} />
       </div>
     );
   }

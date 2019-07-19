@@ -46,7 +46,7 @@ class EditDrive extends React.Component {
     const driveId = this.props.match.params.id;
     saveMe.uid = firebase.auth().currentUser.uid;
     drivesData.putDrive(saveMe, driveId)
-      .then(() => this.props.history.push('/home'))
+      .then(() => this.props.history.push('/myDrives'))
       .catch(err => console.error('unable to save', err));
   }
 
@@ -55,7 +55,6 @@ class EditDrive extends React.Component {
     return (
       <div className="EditDrive">
         <h1>Edit Drive</h1>
-
         <form onSubmit={this.onSubmit}>
         <textarea id="date" placeholder="Date" value={newDrive.date} onChange={this.dateChange} /><br/>
         <textarea id="origin" placeholder="Origin" value={newDrive.origin} onChange={this.originChange} />

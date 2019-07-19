@@ -25,8 +25,8 @@ class DriveCard extends React.Component {
             <h5 className="card-title">{drive.date}</h5>
             <p className="card-text">{drive.origin} to {drive.destination}</p>
             <p className="card-text">{drive.startTime} to {drive.endTime}</p>
-            <Link className="btn btn-primary" to={editLink}>Edit</Link>
-            <button className="btn btn-danger" onClick={this.deleteMe}>Delete</button>
+            <Link className="btn btn-warning" to={editLink}>Edit</Link>
+            <button className="btn btn-danger" onClick={this.deleteMe}>x</button>
           </div>
         </div>
       </div>
