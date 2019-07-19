@@ -24,7 +24,6 @@ class MyDrives extends React.Component {
   }
 
   deleteDrive = (driveId) => {
-    console.error('delete');
     drivesData.deleteDrive(driveId)
       .then(() => this.getDrives())
       .catch(err => console.error(err, 'unable to delete'));
