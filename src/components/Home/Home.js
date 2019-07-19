@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import moment from 'moment';
 import drivesData from '../../helpers/data/drivesData';
 
 import './Home.scss';
@@ -18,12 +19,24 @@ class Home extends React.Component {
   state = {
     drives: [],
     newDrive: defaultDrive,
+    minDrives: [],
   }
+
+  assignMinutes = () => {
+    const assign = this.state.drives.map((drive) => {
+      const start = moment(drive.startTime, 'HH:mm');
+      const end = moment(drive.endTime, 'HH:mm');
+      const minutes = end.diff(start, 'minutes');
+      return { ...drive, minutes };
+    });
+    this.setState({ minDrives: assign });
+  };
 
   getDrives = () => {
     const { uid } = firebase.auth().currentUser;
     drivesData.getMyDrives(uid)
       .then(drives => this.setState({ drives }))
+      .then(() => this.assignMinutes())
       .catch(err => console.error(err, 'could not get data from Home'));
   }
 
@@ -52,11 +65,11 @@ class Home extends React.Component {
     const saveMe = { ...this.state.newDrive };
     saveMe.uid = firebase.auth().currentUser.uid;
     drivesData.postDrive(saveMe);
-    this.getDrives();
   }
 
   render() {
     const { drives } = this.state;
+    const { minDrives } = this.state;
     return (
       <div className="Home col">
         <h1>Home</h1>
@@ -68,7 +81,7 @@ class Home extends React.Component {
         <textarea placeholder="End Time" value={this.state.value} onChange={this.endTimeChange} /><br/>
         <input type="submit" value="Save" />
       </form>
-      <Calculations drives={drives} />
+      <Calculations drives={drives} minDrives={minDrives} />
       </div>
     );
   }
