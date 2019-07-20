@@ -35,7 +35,9 @@ class Home extends React.Component {
   getDrives = () => {
     const { uid } = firebase.auth().currentUser;
     drivesData.getMyDrives(uid)
-      .then(drives => this.setState({ drives }))
+      .then((drives) => {
+        this.setState({ drives });
+      })
       .then(() => this.assignMinutes())
       .catch(err => console.error(err, 'could not get data from Home'));
   }
@@ -64,7 +66,8 @@ class Home extends React.Component {
     e.preventDefault();
     const saveMe = { ...this.state.newDrive };
     saveMe.uid = firebase.auth().currentUser.uid;
-    drivesData.postDrive(saveMe);
+    drivesData.postDrive(saveMe)
+      .then(() => this.getDrives());
   }
 
   render() {
@@ -74,7 +77,7 @@ class Home extends React.Component {
       <div className="Home col">
         <h1>Home</h1>
         <form onSubmit={this.onSubmit}>
-        <textarea placeholder="Date" value={this.state.value} onChange={this.dateChange} /><br/>
+        <textarea placeholder="MM/DD/YYYY" value={this.state.value} onChange={this.dateChange} /><br/>
         <textarea placeholder="Origin" value={this.state.value} onChange={this.originChange} />
         <textarea placeholder="Destination" value={this.state.value} onChange={this.destinationChange} /><br/>
         <textarea placeholder="Start Time" value={this.state.value} onChange={this.startTimeChange} />
