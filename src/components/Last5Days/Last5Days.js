@@ -1,37 +1,43 @@
 import React from 'react';
 
 class Last5Days extends React.Component {
-  averageTime = () => {
-    const { minDrives } = this.props;
-    if (this.props.sortDates().length > 5) {
-      minDrives.pop();
-    }
-    const avgTimeArr = [];
-    minDrives.forEach((minDrive) => {
-      avgTimeArr.push(minDrive.minutes);
-    });
-    const avgTime = avgTimeArr.reduce((a, b) => a + b, 0) / avgTimeArr.length;
-    return <h4>{avgTime} minutes</h4>;
-  }
-
-  quickestTime = () => {
-    const quickestTimeArr = [];
-    this.props.minDrives.forEach((minDrive) => {
-      quickestTimeArr.push(minDrive.minutes);
-    });
-    const quickTime = Math.min(...quickestTimeArr);
-    return <h4>{quickTime} minutes</h4>;
-  }
-
   render() {
+    const sortedDates = [...this.props.minDrives];
+
+    const popOff = () => {
+      while (sortedDates.length > 5) {
+        sortedDates.pop();
+      }
+    };
+
+    const averageTime = () => {
+      const minsArr = [];
+      sortedDates.forEach((day) => {
+        minsArr.push(day.minutes);
+      });
+      const avgTime = minsArr.reduce((a, b) => a + b, 0) / minsArr.length;
+      return <h4>{avgTime.toFixed(0)} minutes</h4>;
+    };
+
+    const quickestTime = () => {
+      const minsArr = [];
+      sortedDates.forEach((day) => {
+        minsArr.push(day.minutes);
+      });
+      const quickTime = Math.min(...minsArr);
+      console.error(minsArr);
+      return <h4>{quickTime.toFixed(0)} minutes</h4>;
+    };
+
     return (
       <div className="Last5Days container">
+        {popOff()}
         <h2>Last 5 Days</h2>
         <div>
           <h3>Average Time:</h3>
-          {this.averageTime()}
+          {averageTime()}
           <h3>Quickest Time:</h3>
-          {this.quickestTime()}
+          {quickestTime()}
         </div>
       </div>
     );
