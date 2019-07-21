@@ -29,8 +29,13 @@ class MyDrives extends React.Component {
       .catch(err => console.error(err, 'unable to delete'));
   }
 
+  sortDates = () => {
+    const descendingDates = this.state.drives.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return descendingDates;
+  }
+
   render() {
-    const makeDriveCards = this.state.drives.map(drive => (
+    const makeDriveCards = this.sortDates().map(drive => (
       <DriveCard
       key={drive.id}
       drive={drive}
