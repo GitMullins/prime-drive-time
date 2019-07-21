@@ -1,45 +1,28 @@
 import React from 'react';
-// import moment from 'moment';
+import Last5Days from '../Last5Days/Last5Days';
+import Last20Days from '../Last20Days/Last20Days';
 
 import './Calculations.scss';
 
 class Calculations extends React.Component {
-  averageTime = () => {
-    const avgTimeArr = [];
-    this.props.minDrives.forEach((minDrive) => {
-      avgTimeArr.push(minDrive.minutes);
-    });
-    const avgTime = avgTimeArr.reduce((a, b) => a + b, 0) / avgTimeArr.length;
-    return avgTime.toFixed(0);
-  }
-
-  quickestTime = () => {
-    const quickestTimeArr = [];
-    this.props.minDrives.forEach((minDrive) => {
-      quickestTimeArr.push(minDrive.minutes);
-    });
-    return Math.min(...quickestTimeArr);
-  }
-
-  formatDates = () => {
-    const datesArr = [];
-    this.props.drives.forEach((drive) => {
-      const momentDate = drive.date;
-      datesArr.push(momentDate);
-    });
-    const c = datesArr.sort((a, b) => new Date(b) - new Date(a));
-    console.error(c);
+  sortDates = () => {
+    const descendingDates = this.props.minDrives.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return descendingDates;
   }
 
   render() {
-    this.averageTime();
     return (
-      <div className="MyDrives container">
+      <div className="Calculations container">
         <h1>Calculations</h1>
         <div>
-          <h3>Average Time: {this.averageTime()} minutes</h3>
-          <h3>Quickest Time: {this.quickestTime()} minutes</h3>
-          <h3>{this.formatDates()}</h3>
+          <Last5Days
+          minDrives={this.props.minDrives}
+          sortDates={this.sortDates}
+          />
+          <Last20Days
+          minDrives={this.props.minDrives}
+          sortDates={this.sortDates}
+          />
         </div>
       </div>
     );

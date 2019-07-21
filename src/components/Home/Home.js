@@ -71,7 +71,6 @@ class Home extends React.Component {
   }
 
   render() {
-    const { drives } = this.state;
     const { minDrives } = this.state;
     return (
       <div className="Home col">
@@ -84,7 +83,7 @@ class Home extends React.Component {
         <textarea placeholder="End Time" value={this.state.value} onChange={this.endTimeChange} /><br/>
         <input type="submit" value="Save" />
       </form>
-      <Calculations drives={drives} minDrives={minDrives} />
+      <Calculations minDrives={minDrives} />
       </div>
     );
   }
