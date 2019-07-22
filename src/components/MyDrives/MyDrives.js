@@ -29,8 +29,13 @@ class MyDrives extends React.Component {
       .catch(err => console.error(err, 'unable to delete'));
   }
 
+  sortDates = () => {
+    const descendingDates = this.state.drives.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return descendingDates;
+  }
+
   render() {
-    const makeDriveCards = this.state.drives.map(drive => (
+    const makeDriveCardsNewest = this.sortDates().map(drive => (
       <DriveCard
       key={drive.id}
       drive={drive}
@@ -42,7 +47,7 @@ class MyDrives extends React.Component {
       <div className="MyDrives container">
         <h1>My Drives</h1>
         <div className="d-flex row">
-        { makeDriveCards }
+        { makeDriveCardsNewest }
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import Last5Days from '../Last5Days/Last5Days';
 import Last20Days from '../Last20Days/Last20Days';
+import AllDays from '../AllDays/AllDays';
 
 import './Calculations.scss';
 
@@ -15,16 +16,18 @@ class Calculations extends React.Component {
     return (
       <div className="Calculations container">
         <h1>Calculations</h1>
-        <div>
           <Last5Days
           minDrives={this.props.minDrives}
           sortDates={this.sortDates}
-          />
+          /><br/>
           <Last20Days
           minDrives={this.props.minDrives}
           sortDates={this.sortDates}
+          /><br/>
+          <AllDays
+          minDrives={this.props.minDrives}
+          sortDates={this.sortDates}
           />
-        </div>
       </div>
     );
   }

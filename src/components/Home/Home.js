@@ -6,6 +6,7 @@ import drivesData from '../../helpers/data/drivesData';
 
 import './Home.scss';
 import Calculations from '../Calculations/Calculations';
+import FiveDayView from '../FiveDayView/FiveDayView';
 
 const defaultDrive = {
   date: '',
@@ -72,9 +73,9 @@ class Home extends React.Component {
 
   render() {
     const { minDrives } = this.state;
+    const { drives } = this.state;
     return (
-      <div className="Home col">
-        <h1>Home</h1>
+      <div className="Home col"><br/>
         <form onSubmit={this.onSubmit}>
         <textarea placeholder="MM/DD/YYYY" value={this.state.value} onChange={this.dateChange} /><br/>
         <textarea placeholder="Origin" value={this.state.value} onChange={this.originChange} />
@@ -83,6 +84,7 @@ class Home extends React.Component {
         <textarea placeholder="End Time" value={this.state.value} onChange={this.endTimeChange} /><br/>
         <input type="submit" value="Save" />
       </form>
+      <FiveDayView drives={drives}/>
       <Calculations minDrives={minDrives} />
       </div>
     );
