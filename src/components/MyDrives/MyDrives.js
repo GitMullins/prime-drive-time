@@ -35,7 +35,7 @@ class MyDrives extends React.Component {
   }
 
   render() {
-    const makeDriveCards = this.sortDates().map(drive => (
+    const makeDriveCardsNewest = this.sortDates().map(drive => (
       <DriveCard
       key={drive.id}
       drive={drive}
@@ -47,7 +47,7 @@ class MyDrives extends React.Component {
       <div className="MyDrives container">
         <h1>My Drives</h1>
         <div className="d-flex row">
-        { makeDriveCards }
+        { makeDriveCardsNewest }
         </div>
       </div>
     );
