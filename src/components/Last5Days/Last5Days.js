@@ -36,34 +36,36 @@ class Last5Days extends React.Component {
       });
       const result = [];
       minsArr.forEach((element, index) => {
-        // Find if there is a duplicate or not
+        // Find if there are duplicate minutes or not
         if (minsArr.indexOf(element, index + 1) > -1) {
           // Find if the element is already in the result array or not
           if (result.indexOf(element) === -1) {
             result.push(element);
           }
         }
-        // accepts duplicate drive time as best time to leave if it is not the slowest or 2nd slowest in the 5day array
-        if (result.length > 0 && minsArr.sort().indexOf(result[0]) !== 3 && minsArr.sort().indexOf(result[0]) !== 4) {
-          const newArray = sortedDates.filter(drive => drive.minutes === result[0]);
-          return <h4>Best Time to Leave: {newArray[0].startTime}</h4>;
-        }
-        const quickTime = Math.min(...minsArr);
-        sortedDates.filter(drive => drive.minutes === quickTime);
-        // console.error('dates', sortedDates);
-        // return <h4>Best Time to Leave: {quickArr.startTime}</h4>;
       });
+      // accepts duplicate drive time as best time to leave if it is not the slowest or 2nd slowest in the 5day array
+      if (result.length > 0 && minsArr.sort().indexOf(result[0]) !== 3 && minsArr.sort().indexOf(result[0]) !== 4 && result[0].startTime === result[1].startTime) {
+        const newArray = sortedDates.filter(drive => drive.minutes === result[0]);
+        return <h4>Best Time to Leave: {newArray[0].startTime}</h4>;
+      }
+      const quickTime = Math.min(...minsArr);
+      const quickArr = sortedDates.filter(drive => drive.minutes === quickTime);
+      // if statement added to prevent empty array errors
+      if (quickArr.length > 0) {
+        return <h4>Best Time to Leave: {quickArr[0].startTime}</h4>;
+      }
+      return null;
     };
 
     return (
-      <div className="Last5Days">
+      <div className="Last5DaysTemp">
         {popOff()}
-        {console.error(sortedDates)}
         <div>
         <h2>Last 5 Days</h2>
+        {bestTimeToLeave()}
           {averageTime()}
           {quickestTime()}
-          {bestTimeToLeave()}
         </div>
       </div>
     );
