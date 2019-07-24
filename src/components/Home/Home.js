@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import drivesData from '../../helpers/data/drivesData';
 
@@ -74,9 +75,29 @@ class Home extends React.Component {
   render() {
     const { minDrives } = this.state;
     const { drives } = this.state;
+    const newRouteLink = '/newRoute';
+    const check = () => {
+      if (drives.length > 0 && minDrives.length > 0) {
+        console.error(drives);
+        return <div>
+          <form onSubmit={this.onSubmit}>
+            <textarea placeholder="MM/DD/YYYY" value={this.state.value} onChange={this.dateChange} /><br/>
+            <textarea placeholder="Origin" value={this.state.value} onChange={this.originChange} />
+            <textarea placeholder="Destination" value={this.state.value} onChange={this.destinationChange} /><br/>
+            <textarea placeholder="Start Time" value={this.state.value} onChange={this.startTimeChange} />
+            <textarea placeholder="End Time" value={this.state.value} onChange={this.endTimeChange} /><br/>
+            <input type="submit" value="Save" />
+          </form>
+          <Link className="btn btn-success" to={newRouteLink}>Add new route</Link>
+          <FiveDayView drives={drives}/>
+          <Calculations minDrives={minDrives} />
+        </div>;
+      }
+      return null;
+    };
     return (
       <div className="Home col"><br/>
-        <form onSubmit={this.onSubmit}>
+        {/* <form onSubmit={this.onSubmit}>
         <textarea placeholder="MM/DD/YYYY" value={this.state.value} onChange={this.dateChange} /><br/>
         <textarea placeholder="Origin" value={this.state.value} onChange={this.originChange} />
         <textarea placeholder="Destination" value={this.state.value} onChange={this.destinationChange} /><br/>
@@ -84,8 +105,10 @@ class Home extends React.Component {
         <textarea placeholder="End Time" value={this.state.value} onChange={this.endTimeChange} /><br/>
         <input type="submit" value="Save" />
       </form>
+      <Link className="btn btn-success" to={newRouteLink}>Add new route</Link>
       <FiveDayView drives={drives}/>
-      <Calculations minDrives={minDrives} />
+      <Calculations minDrives={minDrives} /> */}
+      {check()}
       </div>
     );
   }

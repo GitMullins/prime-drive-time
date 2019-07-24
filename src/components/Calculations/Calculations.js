@@ -13,6 +13,7 @@ class Calculations extends React.Component {
 
   render() {
     this.sortDates();
+    console.error('calc render');
     return (
       <div className="Calculations container">
         <h1>Calculations</h1>
