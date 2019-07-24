@@ -70,7 +70,7 @@ class App extends React.Component {
 
                 <PrivateRoute path='/myDrives' component={MyDrives} authed={authed} />
                 <PrivateRoute path='/edit/:id' component={EditDrive} authed={authed} />
-                <PrivateRoute path='/newRoute/:id' component={NewRoute} authed={authed} />
+                <PrivateRoute path='/newRoute' component={NewRoute} authed={authed} />
                 <Redirect from="*" to="/auth" />
               </Switch>
             </div>
