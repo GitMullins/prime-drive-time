@@ -78,14 +78,13 @@ class Home extends React.Component {
     const newRouteLink = '/newRoute';
     const check = () => {
       if (drives.length > 0 && minDrives.length > 0) {
-        console.error(drives);
         return <div>
           <form onSubmit={this.onSubmit}>
-            <textarea placeholder="MM/DD/YYYY" value={this.state.value} onChange={this.dateChange} /><br/>
-            <textarea placeholder="Origin" value={this.state.value} onChange={this.originChange} />
-            <textarea placeholder="Destination" value={this.state.value} onChange={this.destinationChange} /><br/>
-            <textarea placeholder="Start Time" value={this.state.value} onChange={this.startTimeChange} />
-            <textarea placeholder="End Time" value={this.state.value} onChange={this.endTimeChange} /><br/>
+            <textarea placeholder="MM/DD/YYYY" onChange={this.dateChange} /><br/>
+            <textarea placeholder="Origin" onChange={this.originChange} />
+            <textarea placeholder="Destination" onChange={this.destinationChange} /><br/>
+            <textarea placeholder="Start Time" onChange={this.startTimeChange} />
+            <textarea placeholder="End Time" onChange={this.endTimeChange} /><br/>
             <input type="submit" value="Save" />
           </form>
           <Link className="btn btn-success" to={newRouteLink}>Add new route</Link>
