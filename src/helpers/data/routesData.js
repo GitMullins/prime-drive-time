@@ -4,7 +4,7 @@ import firebaseConfig from '../apiKeys.json';
 const baseUrl = firebaseConfig.firebaseKeys.databaseURL;
 
 const getMyRoutes = uid => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/drives.json?orderBy="uid"&equalTo="${uid}"`)
+  axios.get(`${baseUrl}/routes.json?orderBy="uid"&equalTo="${uid}"`)
     .then((res) => {
       const drives = [];
       if (res.data !== null) {
@@ -18,18 +18,17 @@ const getMyRoutes = uid => new Promise((resolve, reject) => {
     .catch(err => reject(err));
 });
 
-const deleteDrive = driveId => axios.delete(`${baseUrl}/drives/${driveId}.json`);
+const deleteRoute = routeId => axios.delete(`${baseUrl}/routes/${routeId}.json`);
 
-const getSingleDrive = driveId => axios.get(`${baseUrl}/drives/${driveId}.json`);
+const getSingleRoute = routeId => axios.get(`${baseUrl}/routes/${routeId}.json`);
 
-const postDrive = newDrive => axios.post(`${baseUrl}/drives.json`, newDrive);
+const postRoute = newRoute => axios.post(`${baseUrl}/routes.json`, newRoute);
 
-const putDrive = (updatedDrive, driveId) => axios.put(`${baseUrl}/drives/${driveId}.json`, updatedDrive);
+// const putDrive = (updatedDrive, driveId) => axios.put(`${baseUrl}/drives/${driveId}.json`, updatedDrive);
 
 export default {
   getMyRoutes,
-  deleteDrive,
-  postDrive,
-  putDrive,
-  getSingleDrive,
+  deleteRoute,
+  getSingleRoute,
+  postRoute,
 };
