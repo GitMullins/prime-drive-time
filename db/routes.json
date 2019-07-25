@@ -5,22 +5,22 @@
     "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
   },
   "route2": {
-    "origin": "Murfreesboro",
+    "origin": "Clarksville",
     "destination": "Nashville",
     "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
   },
   "route3": {
-    "origin": "Murfreesboro",
+    "origin": "Smyrna",
     "destination": "Nashville",
     "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
   },
   "route4": {
-    "origin": "Murfreesboro",
+    "origin": "Antioch",
     "destination": "Nashville",
     "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
   },
   "route5": {
-    "origin": "Murfreesboro",
+    "origin": "Brentwood",
     "destination": "Nashville",
     "uid": "7InnUQVaMCVcoNoB2pfKSOhnBZ12"
   }
