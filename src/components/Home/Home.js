@@ -11,16 +11,17 @@ import './Home.scss';
 import Calculations from '../Calculations/Calculations';
 import FiveDayView from '../FiveDayView/FiveDayView';
 
-const defaultDrive = {
+const defaultTrip = {
   date: '',
   startTime: '',
   endTime: '',
+  routeId: '',
 };
 
 class Home extends React.Component {
   state = {
     drives: [],
-    newDrive: defaultDrive,
+    newTrip: defaultTrip,
     minDrives: [],
     routes: [],
     trips: [],
@@ -36,20 +37,10 @@ class Home extends React.Component {
     this.setState({ minDrives: assign });
   };
 
-  routesToDropdown = () => {
-    const { routes } = this.state;
-    const values = [<option key={'chooseRoute'} defaultValue value="grapefruit">CHOOSE ROUTE</option>];
-    routes.forEach((route) => {
-      values.push(<option key={route.origin}>{route.origin}</option>);
-    });
-    return values;
-  }
-
   getRoutes = () => {
     const { uid } = firebase.auth().currentUser;
     routesData.getMyRoutes(uid)
       .then(routes => this.setState({ routes }))
-      // .then(() => this.routesToDropdown())
       .catch(err => console.error(err, 'could not get data from Home'));
   }
 
@@ -72,9 +63,9 @@ class Home extends React.Component {
   }
 
   formFieldStringState = (name, e) => {
-    const tempDrive = { ...this.state.newDrive };
-    tempDrive[name] = e.target.value;
-    this.setState({ newDrive: tempDrive });
+    const tempTrip = { ...this.state.newTrip };
+    tempTrip[name] = e.target.value;
+    this.setState({ newTrip: tempTrip });
   }
 
   dateChange = e => this.formFieldStringState('date', e);
@@ -83,12 +74,23 @@ class Home extends React.Component {
 
   endTimeChange = e => this.formFieldStringState('endTime', e);
 
+  routeChange = e => this.formFieldStringState('routeId', e);
+
+  routesToDropdown = () => {
+    const { routes } = this.state;
+    const values = [<option key={'chooseRoute'} value={'123'} defaultValue>CHOOSE ROUTE</option>];
+    routes.forEach((route) => {
+      values.push(<option value={route.id} key={route.origin}>{route.origin}</option>);
+    });
+    return values;
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
-    const saveMe = { ...this.state.newDrive };
+    const saveMe = { ...this.state.newTrip };
     saveMe.uid = firebase.auth().currentUser.uid;
-    tripsData.postTrip(saveMe)
-      .then(() => this.getDrives());
+    tripsData.postTrip(saveMe);
+      // .then(() => this.getDrives());
   }
 
   render() {
@@ -100,7 +102,7 @@ class Home extends React.Component {
       if (routes.length > 0) {
         return <div>
           <form onSubmit={this.onSubmit}>
-            <select>
+            <select onChange={this.routeChange}>
               {this.routesToDropdown()}
             </select><br/><br/>
             <textarea placeholder="MM/DD/YYYY" onChange={this.dateChange} /><br/>
