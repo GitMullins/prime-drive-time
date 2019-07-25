@@ -6,14 +6,14 @@ const baseUrl = firebaseConfig.firebaseKeys.databaseURL;
 const getMyRoutes = uid => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/routes.json?orderBy="uid"&equalTo="${uid}"`)
     .then((res) => {
-      const drives = [];
+      const routes = [];
       if (res.data !== null) {
         Object.keys(res.data).forEach((fbkey) => {
           res.data[fbkey].id = fbkey;
-          drives.push(res.data[fbkey]);
+          routes.push(res.data[fbkey]);
         });
       }
-      resolve(drives);
+      resolve(routes);
     })
     .catch(err => reject(err));
 });
@@ -24,7 +24,7 @@ const getSingleRoute = routeId => axios.get(`${baseUrl}/routes/${routeId}.json`)
 
 const postRoute = newRoute => axios.post(`${baseUrl}/routes.json`, newRoute);
 
-// const putDrive = (updatedDrive, driveId) => axios.put(`${baseUrl}/drives/${driveId}.json`, updatedDrive);
+// const putDrive = (updatedDrive, driveId) => axios.put(`${baseUrl}/routes/${driveId}.json`, updatedDrive);
 
 export default {
   getMyRoutes,

@@ -3,7 +3,9 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import drivesData from '../../helpers/data/drivesData';
+import tripsData from '../../helpers/data/tripsData';
+import routesData from '../../helpers/data/routesData';
+// import drivesData from '../../helpers/data/drivesData';
 
 import './Home.scss';
 import Calculations from '../Calculations/Calculations';
@@ -11,8 +13,6 @@ import FiveDayView from '../FiveDayView/FiveDayView';
 
 const defaultDrive = {
   date: '',
-  origin: '',
-  destination: '',
   startTime: '',
   endTime: '',
 };
@@ -22,10 +22,12 @@ class Home extends React.Component {
     drives: [],
     newDrive: defaultDrive,
     minDrives: [],
+    routes: [],
+    trips: [],
   }
 
-  assignMinutes = () => {
-    const assign = this.state.drives.map((drive) => {
+  assignMinutes = (drives) => {
+    const assign = drives.map((drive) => {
       const start = moment(drive.startTime, 'HH:mm');
       const end = moment(drive.endTime, 'HH:mm');
       const minutes = end.diff(start, 'minutes');
@@ -34,18 +36,39 @@ class Home extends React.Component {
     this.setState({ minDrives: assign });
   };
 
-  getDrives = () => {
+  routesToDropdown = () => {
+    const { routes } = this.state;
+    const values = [<option key={'chooseRoute'} defaultValue value="grapefruit">CHOOSE ROUTE</option>];
+    routes.forEach((route) => {
+      values.push(<option key={route.origin}>{route.origin}</option>);
+    });
+    return values;
+  }
+
+  getRoutes = () => {
     const { uid } = firebase.auth().currentUser;
-    drivesData.getMyDrives(uid)
-      .then((drives) => {
-        this.setState({ drives });
-      })
-      .then(() => this.assignMinutes())
+    routesData.getMyRoutes(uid)
+      .then(routes => this.setState({ routes }))
+      // .then(() => this.routesToDropdown())
       .catch(err => console.error(err, 'could not get data from Home'));
   }
 
+  // getDrives = () => {
+  //   const { uid } = firebase.auth().currentUser;
+  //   drivesData.getMyDrives(uid)
+  //     .then((drives) => {
+  //       this.assignMinutes(drives);
+  //       this.getRoutes(drives);
+  //       this.setState({ drives });
+  //     })
+  //     // .then(() => this.assignMinutes())
+  //     // .then(() => this.getRoutes())
+  //     .catch(err => console.error(err, 'could not get data from Home'));
+  // }
+
   componentDidMount() {
-    this.getDrives();
+    // this.getDrives();
+    this.getRoutes();
   }
 
   formFieldStringState = (name, e) => {
@@ -56,10 +79,6 @@ class Home extends React.Component {
 
   dateChange = e => this.formFieldStringState('date', e);
 
-  originChange = e => this.formFieldStringState('origin', e);
-
-  destinationChange = e => this.formFieldStringState('destination', e);
-
   startTimeChange = e => this.formFieldStringState('startTime', e);
 
   endTimeChange = e => this.formFieldStringState('endTime', e);
@@ -68,21 +87,23 @@ class Home extends React.Component {
     e.preventDefault();
     const saveMe = { ...this.state.newDrive };
     saveMe.uid = firebase.auth().currentUser.uid;
-    drivesData.postDrive(saveMe)
+    tripsData.postTrip(saveMe)
       .then(() => this.getDrives());
   }
 
   render() {
     const { minDrives } = this.state;
     const { drives } = this.state;
+    const { routes } = this.state;
     const newRouteLink = '/newRoute';
     const check = () => {
-      if (drives.length > 0 && minDrives.length > 0) {
+      if (routes.length > 0) {
         return <div>
           <form onSubmit={this.onSubmit}>
+            <select>
+              {this.routesToDropdown()}
+            </select><br/><br/>
             <textarea placeholder="MM/DD/YYYY" onChange={this.dateChange} /><br/>
-            <textarea placeholder="Origin" onChange={this.originChange} />
-            <textarea placeholder="Destination" onChange={this.destinationChange} /><br/>
             <textarea placeholder="Start Time" onChange={this.startTimeChange} />
             <textarea placeholder="End Time" onChange={this.endTimeChange} /><br/>
             <input type="submit" value="Save" />
