@@ -4,7 +4,7 @@ import firebaseConfig from '../apiKeys.json';
 const baseUrl = firebaseConfig.firebaseKeys.databaseURL;
 
 const getMyTrips = uid => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/trips.json?orderBy="uid"&equalTo="${uid}"`)
+  axios.get(`${baseUrl}/trips/.json?orderBy="uid"&equalTo="${uid}"`)
     .then((res) => {
       const trips = [];
       if (res.data !== null) {
@@ -24,11 +24,12 @@ const getSingleTrip = tripId => axios.get(`${baseUrl}/trips/${tripId}.json`);
 
 const postTrip = newTrip => axios.post(`${baseUrl}/trips.json`, newTrip);
 
-// const putDrive = (updatedDrive, driveId) => axios.put(`${baseUrl}/drives/${driveId}.json`, updatedDrive);
+const putTrip = (updatedDrive, tripId) => axios.put(`${baseUrl}/trips/${tripId}.json`, updatedDrive);
 
 export default {
   getMyTrips,
   deleteTrip,
   getSingleTrip,
   postTrip,
+  putTrip,
 };

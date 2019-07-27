@@ -3,7 +3,7 @@
 
 // class Last5DaysTemp extends React.Component {
 //   render() {
-//     const sortedDates = [...this.props.minDrives];
+//     const sortedDates = [...this.props.minTrips];
 
 //     const popOff = () => {
 //       while (sortedDates.length > 5) {

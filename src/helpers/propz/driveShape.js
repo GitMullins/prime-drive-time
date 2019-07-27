@@ -4,8 +4,6 @@ const driveCardShape = PropTypes.shape({
   date: PropTypes.string.isRequired,
   startTime: PropTypes.string.isRequired,
   endTime: PropTypes.string.isRequired,
-  origin: PropTypes.string.isRequired,
-  destination: PropTypes.string.isRequired,
   uid: PropTypes.string.isRequired,
 });
 

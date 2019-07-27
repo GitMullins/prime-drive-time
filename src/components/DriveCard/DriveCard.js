@@ -11,20 +11,19 @@ class DriveCard extends React.Component {
 
   deleteMe = (e) => {
     e.preventDefault();
-    const { drive, deleteDrive } = this.props;
-    deleteDrive(drive.id);
+    const { trip, deleteTrip } = this.props;
+    deleteTrip(trip.id, trip.routeId);
   }
 
   render() {
-    const { drive } = this.props;
-    const editLink = `/edit/${drive.id}`;
+    const { trip } = this.props;
+    const editLink = `/edit/${trip.id}`;
     return (
       <div className="DriveCard col-3">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">{drive.date}</h5>
-            <p className="card-text">{drive.origin} to {drive.destination}</p>
-            <p className="card-text">{drive.startTime} to {drive.endTime}</p>
+            <h5 className="card-title">{trip.date}</h5>
+            <p className="card-text">{trip.startTime} to {trip.endTime}</p>
             <Link className="btn btn-warning" to={editLink}>Edit</Link>
             <button className="btn btn-danger" onClick={this.deleteMe}>x</button>
           </div>

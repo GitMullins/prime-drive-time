@@ -2,7 +2,7 @@ import React from 'react';
 
 class Last20Days extends React.Component {
   render() {
-    const sortedDates = [...this.props.minDrives];
+    const sortedDates = [...this.props.minTrips];
 
     const popOff = () => {
       while (sortedDates.length > 20) {
