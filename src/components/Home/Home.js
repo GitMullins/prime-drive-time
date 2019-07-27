@@ -96,7 +96,6 @@ class Home extends React.Component {
     const { trips } = this.state;
     const { minTrips } = this.state;
     const { newTrip } = this.state;
-    // const newRouteLink = '/newRoute';
     const check = () => {
       if (routes.length > 0) {
         return <div>
