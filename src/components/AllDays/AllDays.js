@@ -2,7 +2,7 @@ import React from 'react';
 
 class AllDays extends React.Component {
   render() {
-    const sortedDates = [...this.props.minDrives];
+    const sortedDates = [...this.props.minTrips];
 
     const averageTime = () => {
       const minsArr = [];

@@ -3,12 +3,10 @@ import './Last5Days.scss';
 
 class Last5Days extends React.Component {
   render() {
-    const sortedDates = [...this.props.minDrives];
+    const sortedDates = this.props.sortDates(this.props.minTrips);
 
     const popOff = () => {
-      while (sortedDates.length > 5) {
-        sortedDates.pop();
-      }
+      sortedDates.length = 5;
     };
 
     const averageTime = () => {
@@ -17,6 +15,7 @@ class Last5Days extends React.Component {
         minsArr.push(day.minutes);
       });
       const avgTime = minsArr.reduce((a, b) => a + b, 0) / minsArr.length;
+      console.error(sortedDates);
       return <h4>Average Time: {avgTime.toFixed(0)} minutes</h4>;
     };
 
@@ -45,7 +44,7 @@ class Last5Days extends React.Component {
         }
       });
       // accepts duplicate drive time as best time to leave if it is not the slowest or 2nd slowest in the 5day array
-      if (result.length > 0 && minsArr.sort().indexOf(result[0]) !== 3 && minsArr.sort().indexOf(result[0]) !== 4 && result[0].startTime === result[1].startTime) {
+      if (result.length > 1 && minsArr.sort().indexOf(result[0]) !== 3 && minsArr.sort().indexOf(result[0]) !== 4 && result[0].startTime === result[1].startTime) {
         const newArray = sortedDates.filter(drive => drive.minutes === result[0]);
         return <h4>Best Time to Leave: {newArray[0].startTime}</h4>;
       }
@@ -63,7 +62,7 @@ class Last5Days extends React.Component {
         {popOff()}
         <div>
         <h2>Last 5 Days</h2>
-        {bestTimeToLeave()}
+          {bestTimeToLeave()}
           {averageTime()}
           {quickestTime()}
         </div>
