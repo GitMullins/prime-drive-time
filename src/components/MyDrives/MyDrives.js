@@ -42,7 +42,7 @@ class MyDrives extends React.Component {
     const { routes } = this.state;
     const values = [<option key={'chooseRoute'} defaultValue>CHOOSE ROUTE</option>];
     routes.forEach((route) => {
-      values.push(<option value={route.id} key={route.origin}>{route.origin}</option>);
+      values.push(<option value={route.id} key={route.origin}>{route.origin} to {route.destination}</option>);
     });
     return values;
   }
@@ -52,7 +52,7 @@ class MyDrives extends React.Component {
   deleteTrip = (tripId, routeId) => {
     tripsData.deleteTrip(tripId)
       .then(() => this.getTrips(routeId))
-      .catch(err => console.error(err, 'unable to delete'));
+      .catch(err => console.error(err, 'unable to delete from MyDrives'));
   }
 
   sortDates = () => {
