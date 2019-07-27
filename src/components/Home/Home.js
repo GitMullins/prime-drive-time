@@ -36,12 +36,12 @@ class Home extends React.Component {
     this.setState({ minTrips: assign });
   };
 
-  getTrips = () => { // ADD ROUTEID - 'ROUTE2' SET AS DEFAULT
+  getTrips = (routeId) => { // ADD ROUTEID - 'ROUTE2' SET AS DEFAULT
     const newTrips = [];
     const { uid } = firebase.auth().currentUser;
     tripsData.getMyTrips(uid)
       .then(trips => trips.filter((trip) => {
-        if (trip.routeId.includes('route2')) { // REMOVE - SET AS ROUTEID
+        if (trip.routeId.includes(routeId)) { // REMOVE - SET AS ROUTEID
           newTrips.push(trip);
         } return null;
       }))
@@ -54,7 +54,7 @@ class Home extends React.Component {
     const { uid } = firebase.auth().currentUser;
     routesData.getMyRoutes(uid)
       .then(routes => this.setState({ routes }))
-      .then(() => this.getTrips()) // REMOVE - SET AS DEFAULT
+      // .then(() => this.getTrips()) // REMOVE - SET AS DEFAULT
       .catch(err => console.error(err, 'could not get data from Home'));
   }
 
@@ -97,7 +97,7 @@ class Home extends React.Component {
     const { trips } = this.state;
     const { minTrips } = this.state;
     const { newTrip } = this.state;
-    const newRouteLink = '/newRoute';
+    // const newRouteLink = '/newRoute';
     const check = () => {
       if (routes.length > 0) {
         return <div>
@@ -110,7 +110,7 @@ class Home extends React.Component {
             <textarea placeholder="End Time" onChange={this.endTimeChange} /><br/>
             <input type="submit" value="Save" />
           </form>
-          <Link className="btn btn-success" to={newRouteLink}>Add new route</Link>
+          <Link className="btn btn-success" to={{ pathname: '/newRoute', state: { routes } }}>Add new route</Link>
           <FiveDayView />
           <Calculations
           trips={trips}
