@@ -38,7 +38,7 @@ class EditRoute extends React.Component {
     const routeId = this.props.match.params.id;
     saveMe.uid = firebase.auth().currentUser.uid;
     routesData.putRoute(saveMe, routeId)
-      // .then(() => this.props.history.push('/Home'))
+      .then(() => this.props.history.push('/Home'))
       .catch(err => console.error('unable to save', err));
   }
 

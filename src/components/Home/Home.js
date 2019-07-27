@@ -36,26 +36,25 @@ class Home extends React.Component {
     this.setState({ minTrips: assign });
   };
 
-  getTrips = (routeId) => { // ADD ROUTEID - 'ROUTE2' SET AS DEFAULT
+  getTrips = (routeId) => {
     const newTrips = [];
     const { uid } = firebase.auth().currentUser;
     tripsData.getMyTrips(uid)
       .then(trips => trips.filter((trip) => {
-        if (trip.routeId.includes(routeId)) { // REMOVE - SET AS ROUTEID
+        if (trip.routeId.includes(routeId)) {
           newTrips.push(trip);
         } return null;
       }))
       .then(() => this.setState({ trips: newTrips }))
       .then(() => this.assignMinutes())
-      .catch(err => console.error(err, 'could not get data from Calculations'));
+      .catch(err => console.error(err, 'could not get trips from Home'));
   }
 
   getRoutes = () => {
     const { uid } = firebase.auth().currentUser;
     routesData.getMyRoutes(uid)
       .then(routes => this.setState({ routes }))
-      // .then(() => this.getTrips()) // REMOVE - SET AS DEFAULT
-      .catch(err => console.error(err, 'could not get data from Home'));
+      .catch(err => console.error(err, 'could not get routes from Home'));
   }
 
   componentDidMount() {
@@ -111,7 +110,9 @@ class Home extends React.Component {
             <input type="submit" value="Save" />
           </form>
           <Link className="btn btn-success" to={{ pathname: '/newRoute', state: { routes } }}>Add new route</Link>
-          <FiveDayView />
+          <FiveDayView
+          trips={trips}
+          />
           <Calculations
           trips={trips}
           getTrips={this.getTrips}

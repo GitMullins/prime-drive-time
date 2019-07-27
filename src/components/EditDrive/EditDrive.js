@@ -30,10 +30,6 @@ class EditDrive extends React.Component {
 
   dateChange = e => this.formFieldStringState('date', e);
 
-  // originChange = e => this.formFieldStringState('origin', e);
-
-  // destinationChange = e => this.formFieldStringState('destination', e);
-
   startTimeChange = e => this.formFieldStringState('startTime', e);
 
   endTimeChange = e => this.formFieldStringState('endTime', e);
@@ -44,7 +40,7 @@ class EditDrive extends React.Component {
     const tripId = this.props.match.params.id;
     saveMe.uid = firebase.auth().currentUser.uid;
     tripsData.putTrip(saveMe, tripId)
-      .then(() => this.props.history.push('/myDrives'))
+      .then(() => this.props.history.push('/home'))
       .catch(err => console.error('unable to save', err));
   }
 
@@ -55,8 +51,6 @@ class EditDrive extends React.Component {
         <h1>Edit Drive</h1>
         <form onSubmit={this.onSubmit}>
         <textarea id="date" placeholder="Date" value={newTrip.date} onChange={this.dateChange} /><br/>
-        {/* <textarea id="origin" placeholder="Origin" value={newDrive.origin} onChange={this.originChange} />
-        <textarea id="destination" placeholder="Destination" value={newDrive.destination} onChange={this.destinationChange} /><br/> */}
         <textarea id="startTime" placeholder="Start Time" value={newTrip.startTime} onChange={this.startTimeChange} />
         <textarea id="endTime" placeholder="End Time" value={newTrip.endTime} onChange={this.endTimeChange} /><br/>
         <input type="submit" value="Save Edit" />
