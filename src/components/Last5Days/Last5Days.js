@@ -4,24 +4,26 @@ import './Last5Days.scss';
 class Last5Days extends React.Component {
   render() {
     const sortedDates = this.props.sortDates(this.props.minTrips);
+    const sortedDatesCopy = [...sortedDates];
 
     const popOff = () => {
-      sortedDates.length = 5;
+      while (sortedDatesCopy.length > 5) {
+        sortedDatesCopy.pop();
+      }
     };
 
     const averageTime = () => {
       const minsArr = [];
-      sortedDates.forEach((day) => {
+      sortedDatesCopy.forEach((day) => {
         minsArr.push(day.minutes);
       });
       const avgTime = minsArr.reduce((a, b) => a + b, 0) / minsArr.length;
-      console.error(sortedDates);
       return <h4>Average Time: {avgTime.toFixed(0)} minutes</h4>;
     };
 
     const quickestTime = () => {
       const minsArr = [];
-      sortedDates.forEach((day) => {
+      sortedDatesCopy.forEach((day) => {
         minsArr.push(day.minutes);
       });
       const quickTime = Math.min(...minsArr);
@@ -30,12 +32,13 @@ class Last5Days extends React.Component {
 
     const bestTimeToLeave = () => {
       const minsArr = [];
-      sortedDates.forEach((day) => {
+      sortedDatesCopy.forEach((day) => {
         minsArr.push(day.minutes);
       });
       const result = [];
       minsArr.forEach((element, index) => {
         // Find if there are duplicate minutes or not
+        // element = duplicate mins
         if (minsArr.indexOf(element, index + 1) > -1) {
           // Find if the element is already in the result array or not
           if (result.indexOf(element) === -1) {
@@ -44,12 +47,13 @@ class Last5Days extends React.Component {
         }
       });
       // accepts duplicate drive time as best time to leave if it is not the slowest or 2nd slowest in the 5day array
-      if (result.length > 1 && minsArr.sort().indexOf(result[0]) !== 3 && minsArr.sort().indexOf(result[0]) !== 4 && result[0].startTime === result[1].startTime) {
-        const newArray = sortedDates.filter(drive => drive.minutes === result[0]);
-        return <h4>Best Time to Leave: {newArray[0].startTime}</h4>;
+      if (result.length > 0 && minsArr.sort().indexOf(result) !== 3 && minsArr.sort().indexOf(result) !== 4) {
+        result.length = 1;
+        const newArray = sortedDatesCopy.find(drive => drive.minutes === result[0]);
+        return <h4>Best Time to Leave: {newArray.startTime}</h4>;
       }
       const quickTime = Math.min(...minsArr);
-      const quickArr = sortedDates.filter(drive => drive.minutes === quickTime);
+      const quickArr = sortedDatesCopy.filter(drive => drive.minutes === quickTime);
       // if statement added to prevent empty array errors
       if (quickArr.length > 0) {
         return <h4>Best Time to Leave: {quickArr[0].startTime}</h4>;

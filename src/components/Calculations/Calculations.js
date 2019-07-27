@@ -66,14 +66,14 @@ class Calculations extends React.Component {
           minTrips={this.props.minTrips}
           sortDates={this.sortDates}
           /><br/>
-          {/* <Last20Days
+          <Last20Days
           minTrips={this.props.minTrips}
           sortDates={this.sortDates}
           /><br/>
           <AllDays
           minTrips={this.props.minTrips}
           sortDates={this.sortDates}
-          /> */}
+          />
       </div>
     );
   }

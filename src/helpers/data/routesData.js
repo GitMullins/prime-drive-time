@@ -24,11 +24,12 @@ const getSingleRoute = routeId => axios.get(`${baseUrl}/routes/${routeId}.json`)
 
 const postRoute = newRoute => axios.post(`${baseUrl}/routes.json`, newRoute);
 
-// const putDrive = (updatedDrive, driveId) => axios.put(`${baseUrl}/routes/${driveId}.json`, updatedDrive);
+const putRoute = (updatedRoute, routeId) => axios.put(`${baseUrl}/routes/${routeId}.json`, updatedRoute);
 
 export default {
   getMyRoutes,
   deleteRoute,
   getSingleRoute,
   postRoute,
+  putRoute,
 };
