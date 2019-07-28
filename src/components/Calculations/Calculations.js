@@ -58,8 +58,8 @@ class Calculations extends React.Component {
   render() {
     return (
       <div className="Calculations container">
-        <h1>Calculations</h1>
-          <select onChange={this.routeChange}>
+        <h1>Calculations</h1><br/>
+          <select className="calculations-select" onChange={this.routeChange}>
             {this.routesToDropdown()}
           </select><br/><br/>
           <Last5Days
