@@ -1,8 +1,93 @@
-h1 {
-  color: rgb(126, 5, 5);
+.home-form-container {
+  text-align: center;
+  display: flex;
+  padding-top: 30px;
+  align-items: center;
+  margin-bottom: 105px;
 }
 
-form {
+.home-newRoute {
+  order: 1;
+  flex: .5;
+}
+
+.home-form {
+  order: 2;
+}
+
+select {
+  padding:5px; 
+  border:2px solid #ccc; 
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+select:focus {
+  border-color:#333;
+}
+
+textarea {
+  padding:5px; 
+  border:2px solid #ccc; 
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+textarea:focus {
+  border-color:#333;
+}
+
+input[type=submit] {
+  padding:5px 15px; 
+  background:rgba(3, 218, 3, 0.794);
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type=submit]:hover {
+  background:rgba(78, 250, 10, 0.993);
+  // cursor:pointer;
+}
+
+.views-container {
   text-align: center;
-  align-content: center;
+  flex-direction: row;
+  display: flex;
+}
+
+.home-fiveDayView {
+  flex: 1;
+  border: 3px solid black;
+  margin-right: 80px;
+}
+
+.drive-card {
+  box-shadow: 10px 10px;
+  .edit-btn {
+    margin-right: 5px;
+  }
+}
+
+.edit-btn {
+  width: 30%;
+}
+.delete-btn {
+  width: 30%;
+}
+
+.card-body:hover {
+  // background-color: lightblue;
+  font-weight: bold;
+  .edit-btn {
+    width: 40%;
+  }
+  .delete-btn {
+    width: 40%;
+  }
+}
+
+.home-calculations {
+  flex: 1;
 }

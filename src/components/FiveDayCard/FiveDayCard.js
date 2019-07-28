@@ -29,14 +29,14 @@ class FiveDayCard extends React.Component {
     const { trip } = this.props;
     const editLink = `/edit/${trip.id}`;
     return (
-      <div className="DriveCard col-3">
-        <div className="card">
+      <div className="DriveCard col-6">
+        <div className="drive-card card">
           <div className="card-body">
             <h5 className="card-title">{trip.date}</h5>
             <p><i>{newRoute.origin} to {newRoute.destination}</i></p>
             <p className="card-text">{trip.startTime} to {trip.endTime}</p>
-            <Link className="btn btn-warning" to={editLink}>Edit</Link>
-            <button className="btn btn-danger" onClick={this.deleteMe}>x</button>
+            <Link className="btn btn-warning edit-btn" to={editLink}>Edit</Link>
+            <button className="btn btn-danger delete-btn" onClick={this.deleteMe}>x</button>
           </div>
         </div>
       </div>

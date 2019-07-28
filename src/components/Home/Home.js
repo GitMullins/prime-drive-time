@@ -79,7 +79,7 @@ class Home extends React.Component {
     const { routes } = this.state;
     const values = [<option key={'chooseRoute'} value={'choose route'} defaultValue>CHOOSE ROUTE</option>];
     routes.forEach((route) => {
-      values.push(<option value={route.id} key={route.origin}>{route.origin}</option>);
+      values.push(<option value={route.id} key={route.origin}>{route.origin} to {route.destination}</option>);
     });
     return values;
   }
@@ -96,36 +96,68 @@ class Home extends React.Component {
     const { trips } = this.state;
     const { minTrips } = this.state;
     const { newTrip } = this.state;
-    const check = () => {
-      if (routes.length > 0) {
-        return <div>
-          <form onSubmit={this.onSubmit}>
-            <select onChange={this.routeChange}>
-              {this.routesToDropdown()}
-            </select><br/><br/>
-            <textarea placeholder="MM/DD/YYYY" onChange={this.dateChange} /><br/>
-            <textarea placeholder="Start Time" onChange={this.startTimeChange} />
-            <textarea placeholder="End Time" onChange={this.endTimeChange} /><br/>
-            <input type="submit" value="Save" />
-          </form>
-          <Link className="btn btn-success" to={{ pathname: '/newRoute', state: { routes } }}>Add new route</Link>
-          <FiveDayView
+    // const check = () => {
+    //   // if (routes.length > 0) {
+    //     return <div>
+    //       <form onSubmit={this.onSubmit}>
+    //         <select onChange={this.routeChange}>
+    //           {this.routesToDropdown()}
+    //         </select><br/><br/>
+    //         <textarea placeholder="MM/DD/YYYY" onChange={this.dateChange} /><br/>
+    //         <textarea placeholder="Start Time" onChange={this.startTimeChange} />
+    //         <textarea placeholder="End Time" onChange={this.endTimeChange} /><br/>
+    //         <input type="submit" value="Save" />
+    //       </form>
+    //       <Link className="btn btn-success" to={{ pathname: '/newRoute', state: { routes } }}>Add new route</Link>
+    //       <FiveDayView
+    //       trips={trips}
+    //       />
+    //       <Calculations
+    //       trips={trips}
+    //       getTrips={this.getTrips}
+    //       routes={routes}
+    //       minTrips={minTrips}
+    //       newTrip={newTrip}
+    //       routesToDropdown={this.routesToDropdown} />
+    //     </div>;
+    // }
+    // return null;
+    // };
+    return (
+      <div className="home-container">
+      <div className="home-form-container">
+      <div className="home-form">
+        <form onSubmit={this.onSubmit}>
+          <select onChange={this.routeChange}>
+            {this.routesToDropdown()}
+          </select><br/><br/>
+          <textarea placeholder="MM/DD/YYYY" onChange={this.dateChange} /><br/>
+          <textarea placeholder="Start Time" onChange={this.startTimeChange} />
+          <textarea placeholder="End Time" onChange={this.endTimeChange} /><br/>
+          <input type="submit" value="Save" />
+        </form>
+        </div>
+        <div className="home-newRoute">
+          <Link className="btn btn-info" to={{ pathname: '/newRoute', state: { routes } }}>Add a new route</Link>
+        </div>
+        </div>
+        <div className="views-container">
+        <div className="home-fiveDayView">
+        <FiveDayView
           trips={trips}
-          />
-          <Calculations
+        />
+        </div>
+        <div className="home-calculations">
+        <Calculations
           trips={trips}
           getTrips={this.getTrips}
           routes={routes}
           minTrips={minTrips}
           newTrip={newTrip}
-          routesToDropdown={this.routesToDropdown} />
-        </div>;
-      }
-      return null;
-    };
-    return (
-      <div className="Home col"><br/>
-      {check()}
+          routesToDropdown={this.routesToDropdown}
+        />
+        </div>
+        </div>
       </div>
     );
   }

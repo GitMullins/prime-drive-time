@@ -46,8 +46,8 @@ state = {
 
     return (
       <div className="FiveDayView container">
-        <h2>Five Day View</h2>
-        <div>
+        <h2>Five Day View</h2><br/>
+        <div className="row">
           { makeFiveDayCards }
         </div>
       </div>
