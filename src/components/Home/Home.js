@@ -129,7 +129,7 @@ class Home extends React.Component {
         <FiveDayView
         trips={trips}
           // fiveDayTrips={fiveDayTrips}
-          // getAllTrips={this.getAllTrips}
+          getAllTrips={this.getAllTrips}
         />
         </div>
         <div className="home-calculations">
