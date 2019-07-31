@@ -51,7 +51,7 @@ class EditDrive extends React.Component {
     const { routes } = this.state;
     const values = [<option key={'chooseRoute'} value={'choose route'} defaultValue>CHOOSE ROUTE</option>];
     routes.forEach((route) => {
-      values.push(<option value={route.id} key={route.origin}>{route.origin}</option>);
+      values.push(<option value={route.id} key={route.origin}>{route.origin} to {route.destination}</option>);
     });
     return values;
   }

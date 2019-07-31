@@ -14,18 +14,24 @@ class FiveDayCard extends React.Component {
     deleteTrip(trip.id, trip.routeId);
   }
 
-  // getRoute = () => {
-  //   routesData.getSingleRoute(this.props.trip.routeId)
-  //     .then(routePromise => this.setState({ newRoute: routePromise.data }))
-  //     .catch(err => console.error('could not find route in FiveDayView', err));
-  // }
+  getRoute = () => {
+    routesData.getSingleRoute(this.props.trip.routeId)
+      .then(routePromise => this.setState({ newRoute: routePromise.data }))
+      .catch(err => console.error('could not find route in FiveDayView', err));
+  }
 
-  // componentDidMount() {
-  //   this.getRoute();
-  // }
+  originDestination = () => {
+    const { newRoute } = this.state;
+    if (newRoute != null) {
+      return <p><i>{newRoute.origin} to {newRoute.destination}</i></p>;
+    } return null;
+  };
+
+  componentDidMount() {
+    this.getRoute();
+  }
 
   render() {
-    const { newRoute } = this.state;
     const { trip } = this.props;
     const editLink = `/edit/${trip.id}`;
     return (
@@ -33,7 +39,7 @@ class FiveDayCard extends React.Component {
         <div className="drive-card card">
           <div className="card-body">
             <h5 className="card-title">{trip.date}</h5>
-            <p><i>{newRoute.origin} to {newRoute.destination}</i></p>
+            {this.originDestination()}
             <p className="card-text">{trip.startTime} to {trip.endTime}</p>
             <Link className="btn btn-warning edit-btn" to={editLink}>Edit</Link>
             <button className="btn btn-danger delete-btn" onClick={this.deleteMe}>x</button>
