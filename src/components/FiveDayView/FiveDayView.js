@@ -10,6 +10,8 @@ state = {
 }
 
   sortDates = (allTrips) => {
+    // const allTrips = { ...this.props.fiveDayTrips };
+    // console.error(this.props.fiveDayTrips);
     const descendingDates = allTrips.sort((a, b) => new Date(b.date) - new Date(a.date));
     while (descendingDates.length > 5) {
       allTrips.pop();

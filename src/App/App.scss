@@ -1,10 +1,27 @@
-.app-container {
-  // background-color: gray;
-  width: 70%;
-  margin: auto;
-  // height: 1150px;
+body {
+  // background-image: url("../img/background.jpg");
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../img/background.jpg");
+  background-size: cover;
 }
 
-body {
-  background-color: gray;
-}
+// body:after {
+//   background-color: gray;
+//   // background-repeat: no-repeat;
+//   // background-color: black;
+//   background-size: cover;
+//   z-index: 1;
+// }
+
+// .App:after {
+//   background-color: black(243, 232, 217);
+//   width: 70%;
+//   margin: auto;
+//   // height: 1150px;
+// }
+
+// .app-container:after {
+//   background-image: url("../img/background.jpg");
+//   // background-repeat: no-repeat;
+//   // background-color: black;
+//   background-size: cover;
+// }
