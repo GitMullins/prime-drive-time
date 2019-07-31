@@ -2,8 +2,12 @@
   "rules": {
     ".read": true,
     ".write": true,
-    "drives": {
+    "trips": {
+      ".indexOn": "uid"
+    },
+    "routes": {
       ".indexOn": "uid"
     }
+
   }
 }

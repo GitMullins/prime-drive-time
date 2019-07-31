@@ -14,15 +14,15 @@ class FiveDayCard extends React.Component {
     deleteTrip(trip.id, trip.routeId);
   }
 
-  getRoute = () => {
-    routesData.getSingleRoute(this.props.trip.routeId)
-      .then(routePromise => this.setState({ newRoute: routePromise.data }))
-      .catch(err => console.error('could not find route in FiveDayView', err));
-  }
+  // getRoute = () => {
+  //   routesData.getSingleRoute(this.props.trip.routeId)
+  //     .then(routePromise => this.setState({ newRoute: routePromise.data }))
+  //     .catch(err => console.error('could not find route in FiveDayView', err));
+  // }
 
-  componentDidMount() {
-    this.getRoute();
-  }
+  // componentDidMount() {
+  //   this.getRoute();
+  // }
 
   render() {
     const { newRoute } = this.state;
