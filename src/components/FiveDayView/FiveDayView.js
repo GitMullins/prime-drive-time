@@ -10,7 +10,6 @@ state = {
 }
 
   sortDates = (allTrips) => {
-    // const allTrips = { ...this.props.fiveDayTrips };
     // console.error(this.props.fiveDayTrips);
     const descendingDates = allTrips.sort((a, b) => new Date(b.date) - new Date(a.date));
     while (descendingDates.length > 5) {
@@ -22,12 +21,11 @@ state = {
   getTrips = () => {
     const { uid } = firebase.auth().currentUser;
     tripsData.getMyTrips(uid)
-      // .then(allTrips => this.setState({ tripsArr: allTrips }))
       .then(allTrips => this.sortDates(allTrips))
       .catch(err => console.error(err, 'could not get data from FiveDayView'));
   }
 
-  componentDidMount() {
+  componentWillReceiveProps() {
     this.getTrips();
   }
 

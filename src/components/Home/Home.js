@@ -65,7 +65,7 @@ class Home extends React.Component {
       .catch(err => console.error(err, 'could not get routes from Home'));
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getRoutes();
     this.getAllTrips();
   }
@@ -97,7 +97,8 @@ class Home extends React.Component {
     e.preventDefault();
     const saveMe = { ...this.state.newTrip };
     saveMe.uid = firebase.auth().currentUser.uid;
-    tripsData.postTrip(saveMe);
+    tripsData.postTrip(saveMe)
+      .then(() => this.getAllTrips());
   }
 
   render() {
@@ -105,7 +106,7 @@ class Home extends React.Component {
     const { trips } = this.state;
     const { minTrips } = this.state;
     const { newTrip } = this.state;
-    // const { fiveDayTrips } = this.state;
+    const { fiveDayTrips } = this.state;
     return (
       <div className="home-container">
       <div className="home-form-container">
@@ -127,9 +128,7 @@ class Home extends React.Component {
         <div className="views-container">
         <div className="home-fiveDayView">
         <FiveDayView
-        trips={trips}
-          // fiveDayTrips={fiveDayTrips}
-          getAllTrips={this.getAllTrips}
+        fiveDayTrips={fiveDayTrips}
         />
         </div>
         <div className="home-calculations">
