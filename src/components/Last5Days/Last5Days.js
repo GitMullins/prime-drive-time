@@ -62,9 +62,9 @@ class Last5Days extends React.Component {
     };
 
     return (
-      <div className="Last5DaysTemp">
+      <div className="Last5Days">
         {popOff()}
-        <div>
+        <div className="card last-5-card">
         <h2>Last 5 Days</h2>
           {bestTimeToLeave()}
           {averageTime()}

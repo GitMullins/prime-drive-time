@@ -1,4 +1,5 @@
 import React from 'react';
+import './AllDays.scss';
 
 class AllDays extends React.Component {
   render() {
@@ -73,10 +74,10 @@ class AllDays extends React.Component {
     };
     // ---END calculations for arrays with more than 5 days of data---
     return (
-      <div className="AllDays container">
-        <h2>All Days</h2>
-        <div>
-        {bestTimeToLeave()}
+      <div className="AllDays">
+        <div className="card all-days-card">
+          <h2>All Days</h2>
+          {bestTimeToLeave()}
           {averageTime()}
           {quickestTime()}
         </div>

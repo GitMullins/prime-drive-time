@@ -37,7 +37,6 @@ class NewRoute extends React.Component {
     const { uid } = firebase.auth().currentUser;
     routesData.getMyRoutes(uid)
       .then(routes => this.setState({ routes }))
-      // .then(() => this.getTrips()) // REMOVE - SET AS DEFAULT
       .catch(err => console.error(err, 'could not get routes data from NewRoute'));
   }
 
@@ -51,7 +50,8 @@ class NewRoute extends React.Component {
     e.preventDefault();
     const saveMe = { ...this.state.newRoute };
     saveMe.uid = firebase.auth().currentUser.uid;
-    routesData.postRoute(saveMe);
+    routesData.postRoute(saveMe)
+      .then(() => this.getRoutes());
   }
 
   render() {

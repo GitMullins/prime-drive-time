@@ -23,6 +23,7 @@ class Home extends React.Component {
     minTrips: [],
     routes: [],
     trips: [],
+    fiveDayTrips: [],
   }
 
   assignMinutes = () => {
@@ -50,6 +51,13 @@ class Home extends React.Component {
       .catch(err => console.error(err, 'could not get trips from Home'));
   }
 
+  getAllTrips = () => {
+    const { uid } = firebase.auth().currentUser;
+    tripsData.getMyTrips(uid)
+      .then(allTrips => this.setState({ fiveDayTrips: allTrips }))
+      .catch(err => console.error(err, 'could not get data from FiveDayView'));
+  }
+
   getRoutes = () => {
     const { uid } = firebase.auth().currentUser;
     routesData.getMyRoutes(uid)
@@ -59,6 +67,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.getRoutes();
+    this.getAllTrips();
   }
 
   formFieldStringState = (name, e) => {
@@ -96,33 +105,7 @@ class Home extends React.Component {
     const { trips } = this.state;
     const { minTrips } = this.state;
     const { newTrip } = this.state;
-    // const check = () => {
-    //   // if (routes.length > 0) {
-    //     return <div>
-    //       <form onSubmit={this.onSubmit}>
-    //         <select onChange={this.routeChange}>
-    //           {this.routesToDropdown()}
-    //         </select><br/><br/>
-    //         <textarea placeholder="MM/DD/YYYY" onChange={this.dateChange} /><br/>
-    //         <textarea placeholder="Start Time" onChange={this.startTimeChange} />
-    //         <textarea placeholder="End Time" onChange={this.endTimeChange} /><br/>
-    //         <input type="submit" value="Save" />
-    //       </form>
-    //       <Link className="btn btn-success" to={{ pathname: '/newRoute', state: { routes } }}>Add new route</Link>
-    //       <FiveDayView
-    //       trips={trips}
-    //       />
-    //       <Calculations
-    //       trips={trips}
-    //       getTrips={this.getTrips}
-    //       routes={routes}
-    //       minTrips={minTrips}
-    //       newTrip={newTrip}
-    //       routesToDropdown={this.routesToDropdown} />
-    //     </div>;
-    // }
-    // return null;
-    // };
+    // const { fiveDayTrips } = this.state;
     return (
       <div className="home-container">
       <div className="home-form-container">
@@ -144,7 +127,9 @@ class Home extends React.Component {
         <div className="views-container">
         <div className="home-fiveDayView">
         <FiveDayView
-          trips={trips}
+        trips={trips}
+          // fiveDayTrips={fiveDayTrips}
+          // getAllTrips={this.getAllTrips}
         />
         </div>
         <div className="home-calculations">

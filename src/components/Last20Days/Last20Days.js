@@ -1,4 +1,5 @@
 import React from 'react';
+import './Last20Days.scss';
 
 class Last20Days extends React.Component {
   render() {
@@ -76,10 +77,10 @@ class Last20Days extends React.Component {
       return <h4>Best Time to Leave: {lessThanAvg[middle.toFixed(0)].startTime}</h4>;
     };
     return (
-      <div className="Last20Days container">
+      <div className="Last20Days">
         {popOff()}
+        <div className="card last-20-card">
         <h2>Last 20 Days</h2>
-        <div>
         {bestTimeToLeave()}
           {averageTime()}
           {quickestTime()}
