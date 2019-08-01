@@ -22,6 +22,7 @@ class RouteCard extends React.Component {
         <div className="card">
           <div className="card-body">
             <p className="card-text">{route.origin} to {route.destination}</p>
+            <p className="card-text">{route.description}</p>
             <Link className="btn btn-warning" to={editLink}>Edit</Link>
             <button className="btn btn-danger" onClick={this.deleteMe}>x</button>
           </div>

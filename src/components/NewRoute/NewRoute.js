@@ -6,6 +6,7 @@ import RouteCard from '../RouteCard/RouteCard';
 const defaultRoute = {
   origin: '',
   destination: '',
+  description: '',
 };
 
 class NewRoute extends React.Component {
@@ -32,6 +33,8 @@ class NewRoute extends React.Component {
   originChange = e => this.formFieldStringState('origin', e);
 
   destinationChange = e => this.formFieldStringState('destination', e);
+
+  descriptionChange = e => this.formFieldStringState('description', e);
 
   getRoutes = () => {
     const { uid } = firebase.auth().currentUser;
@@ -68,6 +71,7 @@ class NewRoute extends React.Component {
         <form onSubmit={this.onSubmit}>
           <textarea placeholder="Origin" onChange={this.originChange} />
           <textarea placeholder="Destination" onChange={this.destinationChange} /><br/>
+          <textarea placeholder="Description" onChange={this.descriptionChange} /><br/>
           <input type="submit" value="Save" />
         </form>
         {makeRouteCards}

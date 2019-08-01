@@ -7,6 +7,7 @@ import routesData from '../../helpers/data/routesData';
 const defaultRoute = {
   origin: '',
   destination: '',
+  description: '',
 };
 
 class EditRoute extends React.Component {
@@ -32,6 +33,8 @@ class EditRoute extends React.Component {
 
   destinationChange = e => this.formFieldStringState('destination', e);
 
+  descriptionChange = e => this.formFieldStringState('description', e);
+
   onSubmit = (e) => {
     e.preventDefault();
     const saveMe = { ...this.state.newRoute };
@@ -50,6 +53,7 @@ class EditRoute extends React.Component {
         <form onSubmit={this.onSubmit}>
         <textarea id="origin" placeholder="Origin" value={newRoute.origin} onChange={this.originChange} />
         <textarea id="destination" placeholder="Destination" value={newRoute.destination} onChange={this.destinationChange} /><br/>
+        <textarea id="description" placeholder="Description" value={newRoute.description} onChange={this.descriptionChange} /><br/>
         <input type="submit" value="Save Edit" />
       </form>
       </div>

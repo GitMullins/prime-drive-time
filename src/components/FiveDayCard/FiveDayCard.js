@@ -23,7 +23,7 @@ class FiveDayCard extends React.Component {
   originDestination = () => {
     const { newRoute } = this.state;
     if (newRoute != null) {
-      return <p><i>{newRoute.origin} to {newRoute.destination}</i></p>;
+      return (<p><i>{newRoute.origin} to {newRoute.destination}</i></p>, <p><i>{newRoute.description}</i></p>);
     } return null;
   };
 
@@ -33,12 +33,14 @@ class FiveDayCard extends React.Component {
 
   render() {
     const { trip } = this.props;
+    const { newRoute } = this.state;
     const editLink = `/edit/${trip.id}`;
     return (
       <div className="DriveCard col-6">
         <div className="drive-card card">
           <div className="card-body">
             <h5 className="card-title">{trip.date}</h5>
+            <p className="card-text">{newRoute.origin} to {newRoute.destination}</p>
             {this.originDestination()}
             <p className="card-text">{trip.startTime} to {trip.endTime}</p>
             <Link className="btn btn-warning edit-btn" to={editLink}>Edit</Link>
