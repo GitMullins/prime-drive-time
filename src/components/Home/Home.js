@@ -114,7 +114,8 @@ class Home extends React.Component {
         <form onSubmit={this.onSubmit}>
           <select onChange={this.routeChange}>
             {this.routesToDropdown()}
-          </select><br/><br/>
+          </select>
+          <br/><br/>
           <textarea placeholder="MM/DD/YYYY" onChange={this.dateChange} /><br/>
           <textarea placeholder="Start Time" onChange={this.startTimeChange} />
           <textarea placeholder="End Time" onChange={this.endTimeChange} /><br/>
