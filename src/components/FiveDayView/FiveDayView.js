@@ -4,13 +4,14 @@ import 'firebase/auth';
 import tripsData from '../../helpers/data/tripsData';
 import FiveDayCard from '../FiveDayCard/FiveDayCard';
 
+import './FiveDayView.scss';
+
 class FiveDayView extends React.Component {
 state = {
   tripsArr: [],
 }
 
   sortDates = (allTrips) => {
-    // console.error(this.props.fiveDayTrips);
     const descendingDates = allTrips.sort((a, b) => new Date(b.date) - new Date(a.date));
     while (descendingDates.length > 5) {
       allTrips.pop();

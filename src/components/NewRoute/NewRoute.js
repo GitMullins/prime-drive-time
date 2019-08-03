@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase/app';
 import routesData from '../../helpers/data/routesData';
 import RouteCard from '../RouteCard/RouteCard';
+import './NewRoute.scss';
 
 const defaultRoute = {
   origin: '',
@@ -68,6 +69,7 @@ class NewRoute extends React.Component {
     ));
     return (
       <div className="NewRoute col"><br/>
+        <h1>Add a new route</h1><br/>
         <form onSubmit={this.onSubmit}>
           <textarea placeholder="Origin" onChange={this.originChange} />
           <textarea placeholder="Destination" onChange={this.destinationChange} /><br/>
