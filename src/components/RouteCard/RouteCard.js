@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import driveShape from '../../helpers/propz/driveShape';
 
+import './RouteCard.scss';
+
 
 class RouteCard extends React.Component {
   // static propTypes = {
@@ -19,12 +21,12 @@ class RouteCard extends React.Component {
     const editLink = `/editRoute/${route.id}`;
     return (
       <div className="RouteCard col-3">
-        <div className="card">
+        <div className="route-card card">
           <div className="card-body">
             <p className="card-text">{route.origin} to {route.destination}</p>
             <p className="card-text">{route.description}</p>
-            <Link className="btn btn-warning" to={editLink}>Edit</Link>
-            <button className="btn btn-danger" onClick={this.deleteMe}>x</button>
+            <Link className="edit-btn btn btn-warning" to={editLink}>Edit</Link>
+            <button className="delete-btn btn btn-danger" onClick={this.deleteMe}>x</button>
           </div>
         </div>
       </div>

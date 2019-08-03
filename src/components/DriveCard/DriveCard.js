@@ -20,7 +20,7 @@ class DriveCard extends React.Component {
     const editLink = `/edit/${trip.id}`;
     return (
       <div className="DriveCard col-3">
-        <div className="card">
+        <div className="drive-card card">
           <div className="card-body">
             <h5 className="card-title">{trip.date}</h5>
             <p className="card-text">{trip.startTime} to {trip.endTime}</p>
