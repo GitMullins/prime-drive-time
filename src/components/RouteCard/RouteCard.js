@@ -20,7 +20,7 @@ class RouteCard extends React.Component {
     const { route } = this.props;
     const editLink = `/editRoute/${route.id}`;
     return (
-      <div className="RouteCard col-3">
+      <div className="RouteCard col-2">
         <div className="route-card card">
           <div className="card-body">
             <p className="card-text">{route.origin} to {route.destination}</p>

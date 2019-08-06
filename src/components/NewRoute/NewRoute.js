@@ -76,7 +76,9 @@ class NewRoute extends React.Component {
           <textarea placeholder="Description" onChange={this.descriptionChange} /><br/>
           <input type="submit" value="Save" />
         </form>
+        <div className="NewRoute row"><br/>
         {makeRouteCards}
+        </div>
       </div>
     );
   }

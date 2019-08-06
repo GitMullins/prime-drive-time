@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 import routesData from '../../helpers/data/routesData';
+import './EditRoute.scss';
 
 const defaultRoute = {
   origin: '',
@@ -49,7 +50,7 @@ class EditRoute extends React.Component {
     const { newRoute } = this.state;
     return (
       <div className="EditRoute">
-        <h1>Edit Route</h1>
+        <h1>Edit Route</h1><br/>
         <form onSubmit={this.onSubmit}>
         <textarea id="origin" placeholder="Origin" value={newRoute.origin} onChange={this.originChange} />
         <textarea id="destination" placeholder="Destination" value={newRoute.destination} onChange={this.destinationChange} /><br/>
