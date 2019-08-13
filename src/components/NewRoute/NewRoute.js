@@ -69,7 +69,7 @@ class NewRoute extends React.Component {
     ));
     return (
       <div className="NewRoute col"><br/>
-        <h1>Add a new route</h1><br/>
+        <div className="new-route-title"><h1>Add a new route</h1></div><br/>
         <form onSubmit={this.onSubmit}>
           <textarea placeholder="Origin" onChange={this.originChange} />
           <textarea placeholder="Destination" onChange={this.destinationChange} /><br/>
