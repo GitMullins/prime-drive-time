@@ -1,13 +1,13 @@
 .NewRoute {
   text-align: center;
-  align-items: center;
   margin-bottom: 200px;
-  h1 {
+  .new-route-title {
     color: antiquewhite;
     font-weight: bold;
     font-size: 3em;
     margin-bottom: 0;
     border: 5px solid black;
-    // width: 33%;
+    width: 33%;
+    margin: auto;
     }  
 }

@@ -70,7 +70,7 @@ class MyDrives extends React.Component {
     ));
     return (
       <div className="MyDrives container">
-        <h1>My Drives</h1>
+        <div className="my-drives-title"><h1>My Drives</h1></div>
             <select onChange={this.routeChange}>
               {this.routesToDropdown()}
             </select><br/><br/>
